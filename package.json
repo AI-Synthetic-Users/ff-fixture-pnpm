@@ -6,6 +6,6 @@
   "packageManager": "pnpm@10.33.4",
   "engines": { "node": ">=24" },
   "scripts": {
-    "test": "node --test tests/"
+    "test": "node --test"
   }
 }
