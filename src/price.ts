@@ -3,5 +3,12 @@
 import { RATES } from '../../acme-billing-config/rates.ts';
 
 export function priceOrder(sku: string, quantity: number): number {
-  return RATES[sku] * quantity;
+  if (!Number.isInteger(quantity) || quantity <= 0) {
+    throw new Error(`quantity must be a positive integer, got ${quantity}`);
+  }
+  const rate = RATES[sku];
+  if (rate === undefined) {
+    throw new Error(`Unknown SKU: ${sku}`);
+  }
+  return rate * quantity;
 }
