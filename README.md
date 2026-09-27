@@ -1,4 +1,4 @@
-# ff-fixture-pnpm
+# ff-fixture-pnpm — note 70a77db5 B
 Frontier Factory fixture: a small real pnpm TypeScript app with a test script.
 
 ## Frontier Factory fixture
