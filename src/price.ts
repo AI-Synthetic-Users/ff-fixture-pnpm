@@ -6,9 +6,9 @@ export function priceOrder(sku: string, quantity: number): number {
   if (!Number.isInteger(quantity) || quantity <= 0) {
     throw new Error(`quantity must be a positive integer, got ${quantity}`);
   }
-  const rate = RATES[sku];
-  if (rate === undefined) {
+  if (!Object.hasOwn(RATES, sku)) {
     throw new Error(`Unknown SKU: ${sku}`);
   }
+  const rate = RATES[sku];
   return rate * quantity;
 }
