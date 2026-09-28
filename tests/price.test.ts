@@ -7,7 +7,7 @@ import { test, mock } from 'node:test';
 // test below only exercises the error path (unknown SKU → RangeError), which
 // never touches any rate value.
 mock.module('../../acme-billing-config/rates.ts', {
-  defaultExport: { RATES: {} },
+  namedExports: { RATES: {} },
 });
 
 const { priceOrder } = await import('../src/price.ts');
