@@ -1,0 +1,10 @@
+# verify: lockfile touch 2026-09-28T19:12:06.685Z
+lockfileVersion: '9.0'
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
+importers:
+
+  .: {}
