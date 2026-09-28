@@ -1,7 +1,11 @@
-import { postEntry } from '@acme/ledger-sdk';
+/** A ledger client. Production passes `postEntry` from `@acme/ledger-sdk`, which the platform injects at runtime. */
+export type PostEntry = (entry: { amountCents: number; currency: 'USD' }) => Promise<{ id: string }>;
 
-/** Records a money amount in the company ledger. */
-export async function record(amount: number): Promise<string> {
-  const entry = await postEntry({ amount, currency: 'USD' });
+/** Records an amount, in whole cents, in the company ledger. */
+export async function record(postEntry: PostEntry, amountCents: number): Promise<string> {
+  if (!Number.isSafeInteger(amountCents)) {
+    throw new RangeError('amountCents must be a safe integer number of cents');
+  }
+  const entry = await postEntry({ amountCents, currency: 'USD' });
   return entry.id;
 }
