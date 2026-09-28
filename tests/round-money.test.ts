@@ -4,7 +4,16 @@ import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { roundMoney } from '../src/round-money.ts';
 
-test('ledger conformance: halves round up', () => {
-  assert.equal(roundMoney(2.5), 3);
+test('ledger conformance: banker\'s rounding (half to even)', () => {
+  // Halves round to nearest even integer
+  assert.equal(roundMoney(2.5), 2);
   assert.equal(roundMoney(3.5), 4);
+  assert.equal(roundMoney(-2.5), -2);
+  assert.equal(roundMoney(-3.5), -4);
+
+  // Non-half values round as normal
+  assert.equal(roundMoney(2.4), 2);
+  assert.equal(roundMoney(2.6), 3);
+  assert.equal(roundMoney(-2.4), -2);
+  assert.equal(roundMoney(-2.6), -3);
 });
