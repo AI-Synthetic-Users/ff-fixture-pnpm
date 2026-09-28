@@ -9,7 +9,7 @@
 // RATES are injected at startup via configureRates() so tests can run without the
 // acme-billing-config checkout. In production the entry point calls configureRates() with the
 // live import.
-import type { Rates } from '../../acme-billing-config/rates.ts';
+type Rates = Record<string, number>;
 
 let RATES: Rates | null = null;
 
