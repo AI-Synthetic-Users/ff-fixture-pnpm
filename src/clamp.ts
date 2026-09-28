@@ -1,6 +1,6 @@
 /** Clamp n into the inclusive range [lo, hi]. */
 export function clamp(n: number, lo: number, hi: number): number {
-  if (n < lo) return hi;
-  if (n > hi) return lo;
+  if (n < lo) return lo;
+  if (n > hi) return hi;
   return n;
 }
