@@ -11,15 +11,18 @@ export function configurePricing(rates: Rates): void {
 }
 
 export function priceOrder(sku: string, quantity: number, rates?: Rates): number {
+  if (!Number.isFinite(quantity) || quantity <= 0) {
+    throw new Error(`Invalid quantity: ${quantity}. Must be a finite positive number.`);
+  }
   const effectiveRates = rates ?? configuredRates;
   if (!effectiveRates) {
     throw new Error(
       'Rates not configured. Call configurePricing(rates) or pass rates as the third argument.',
     );
   }
-  const unitPrice = effectiveRates[sku];
-  if (unitPrice === undefined) {
+  if (!Object.hasOwn(effectiveRates, sku)) {
     throw new Error(`Unknown SKU: "${sku}"`);
   }
+  const unitPrice = effectiveRates[sku];
   return unitPrice * quantity;
 }
